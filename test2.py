@@ -3,7 +3,7 @@ from tkinter import ttk
 from time import *
 from uart import *
 
-dT = 500
+dT = 50
 ser = Uart()
 fConnect = False
 fLog = False
