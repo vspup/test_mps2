@@ -240,16 +240,16 @@ def modeMain():
     global fMain
     if fConnect:
         if not fMain:
-            cmdLog['text'] = "Disable"
+            cmdMain['text'] = "Disable"
             cmd = 'mode main-coil\r\n'
             ser.write(cmd)
-            fLog = True
+            fMain = True
 
         else:
-            cmdLog['text'] = "on Main"
+            cmdMain['text'] = "on Main"
             cmd = 'disable\r\n'
             ser.write(cmd)
-            fLog = False
+            fMain = False
 
 cmdMain['command'] = modeMain
 
