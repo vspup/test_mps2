@@ -292,8 +292,10 @@ def update():
     if fConnect:
         re = ser.readLN()
         if re != '':
-            ct = time.localtime()
-            ree = str(ctime.tm_hour) + '_' + str(ctime.tm_min) + '_' + str(ctime.tm_sec) + ' ' + re
+            #ct = time.localtime()
+            seconds = time.time()
+            #ree = str(ct.tm_hour) + '_' + str(ct.tm_min) + '_' + str(ct.tm_sec) + ' ' + re
+            ree = str(round(seconds, 3)) + ' ' + re
 
             textLog.insert('end', ree)
             textLog.yview(END)
