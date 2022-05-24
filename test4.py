@@ -11,7 +11,11 @@ from tkinter import filedialog as fd
 dt = 0.5
 mainI = []
 mainV = []
+VV = []
 time = []
+
+Ird = [625, 650, 675, 700, 720, 730, 744]
+Urd = [1.4, 0.8, 0.5, 0.4, 0.3, 0.2, 0.1]
 
 
 
@@ -31,7 +35,7 @@ text.grid(column=0, row=0, sticky='nsew', columnspan=4)
 
 
 def open_log_file():
-    global mainI, mainV, time, dt
+    global mainI, mainV, time, dt, VV
     # file type
     filetypes = (
         ('log files', '*.txt'),
@@ -60,9 +64,11 @@ def open_log_file():
             vls = ls[2].split()
             V = vls[1][:-1]
             t = dt*i
+            Vv = float(V)-float(I)*2.3/740
 
             mainI.append(float(I))
             mainV.append(float(V))
+            VV.append(float(Vv))
             time.append(float(t))
             i=i+1
 
@@ -88,11 +94,11 @@ open_Log.grid(column=0, row=2, sticky='w', padx=10, pady=10)
 
 
 def write_map():
-    global mainI, mainV, time, dt
+    global mainI, mainV, time, dt, Ird, Urd, VV
     text.insert('end', '<<- Start to MAP \n')
 
     #fig, ax_I = plt.subplots()
-    ax_I = plt.subplot(2, 1, 1)
+    ax_I = plt.subplot(3, 1, 1)
     ax_U = ax_I.twinx()
     ax_I.plot(time, mainI, color='r')
     ax_U.plot(time, mainV, color='b')
@@ -100,12 +106,17 @@ def write_map():
     ax_U.set_ylabel('U, V')
     ax_I.grid()
 
-    ax_P = plt.subplot(2, 1, 2)
+    ax_P = plt.subplot(3, 1, 2)
     P = []
     for i in range(len(mainI)):
         P.append(mainI[i]*mainV[i])
     ax_P.plot(time, P, color='g')
     ax_P.grid()
+
+    ax_CMP = plt.subplot(3, 1, 3)
+    ax_CMP.plot(mainI, mainV, '-',  Ird, Urd, '--')
+    ax_CMP.grid()
+
 
     plt.show()
 
