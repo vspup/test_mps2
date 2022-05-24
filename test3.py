@@ -75,14 +75,20 @@ frameMain.rowconfigure(0, weight=1)
 #frameMain.rowconfigure(1, weight=1)
 cmdSetI = ttk.Button(frameMain, text='set I')
 cmdSetI.grid(column=1, row=0, sticky='w', padx=10, pady=10)
+cmdClearI = ttk.Button(frameMain, text='set I=0')
+cmdClearI.grid(column=2, row=0, sticky='w', padx=10, pady=10)
 entrI = Entry(frameMain, text='', )
 entrI.grid(column=0, row=0, padx=10, pady=10, sticky='nsew')
 cmdSetU = ttk.Button(frameMain, text='set V')
 cmdSetU.grid(column=1, row=1, sticky='w', padx=10, pady=10)
+cmdClearU = ttk.Button(frameMain, text='set U=0')
+cmdClearU.grid(column=2, row=1, sticky='w', padx=10, pady=10)
 entrU = Entry(frameMain, text='', )
 entrU.grid(column=0, row=1, padx=10, pady=10, sticky='nsew')
 cmdSetFan = ttk.Button(frameMain, text='fan')
 cmdSetFan.grid(column=1, row=2, sticky='w', padx=10, pady=10)
+cmdClearFan = ttk.Button(frameMain, text='set Fan=0')
+cmdClearFan.grid(column=2, row=2, sticky='w', padx=10, pady=10)
 entrFan = Entry(frameMain, text='', )
 entrFan.grid(column=0, row=2, padx=10, pady=10, sticky='nsew')
 
@@ -155,6 +161,15 @@ def setI():
 
 cmdSetI['command'] = setI
 
+def clearI():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'mainCurrent 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+
+cmdClearI['command'] = clearI
 
 # set U
 def setU():
@@ -168,6 +183,16 @@ def setU():
 cmdSetU['command'] = setU
 
 
+def clearU():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'mainVoltage 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+
+cmdClearU['command'] = clearU
+
 # fan
 def setFan():
     global fConnect
@@ -179,6 +204,15 @@ def setFan():
 
 cmdSetFan['command'] = setFan
 
+def clearFan():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'fan 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+
+cmdClearFan['command'] = clearFan
 
 # psh main
 def setPshMain():
@@ -257,9 +291,13 @@ def update():
     global fConnect
     if fConnect:
         re = ser.readLN()
-        textLog.insert('end', re)
-        textLog.yview(END)
-        fileLog.write(re)
+        if re != '':
+            ct = time.localtime()
+            ree = str(ctime.tm_hour) + '_' + str(ctime.tm_min) + '_' + str(ctime.tm_sec) + ' ' + re
+
+            textLog.insert('end', ree)
+            textLog.yview(END)
+            fileLog.write(ree)
 
     root.after(dT, update)
 
