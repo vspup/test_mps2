@@ -23,6 +23,8 @@ fileLog = open(nameLogFile, 'w')
 # Root window
 root = Tk()
 root.title('to MPS2')
+root.grid_columnconfigure(0, weight=1, uniform="fred")
+root.grid_columnconfigure(1, weight=1, uniform="fred")
 
 
 # Log
@@ -37,7 +39,7 @@ frameLog.grid_columnconfigure(0, weight=1)
 
 
 # serial
-frameSerial = LabelFrame(root, text='J18', )
+frameSerial = LabelFrame(root, text='serial', )
 frameSerial.grid(column=0, row=4, sticky='nsew', padx=10, pady=10)
 frameSerial.columnconfigure(0, weight=1)
 frameSerial.rowconfigure(0, weight=1)
@@ -69,49 +71,62 @@ cmdMain.grid(column=4, row=0, sticky='n', padx=10, pady=10)
 # send main
 frameMain = LabelFrame(root, text='main', )
 frameMain.grid(column=0, row=3, sticky='nsew', padx=10, pady=10)
-frameMain.columnconfigure(0, weight=1)
-#frameMain.columnconfigure(1, weight=1)
+frameMain.columnconfigure(2, weight=1)
 frameMain.rowconfigure(0, weight=1)
-#frameMain.rowconfigure(1, weight=1)
+
+
+cmdClearI = ttk.Button(frameMain, text='set I=0')
+cmdClearI.grid(column=0, row=0, sticky='w', padx=10, pady=10)
 cmdSetI = ttk.Button(frameMain, text='set I')
 cmdSetI.grid(column=1, row=0, sticky='w', padx=10, pady=10)
-cmdClearI = ttk.Button(frameMain, text='set I=0')
-cmdClearI.grid(column=2, row=0, sticky='w', padx=10, pady=10)
 entrI = Entry(frameMain, text='', )
-entrI.grid(column=0, row=0, padx=10, pady=10, sticky='nsew')
+entrI.grid(column=2, row=0, padx=10, pady=10, sticky='nsew')
+
+cmdClearU = ttk.Button(frameMain, text='set U=0')
+cmdClearU.grid(column=0, row=1, sticky='w', padx=10, pady=10)
 cmdSetU = ttk.Button(frameMain, text='set V')
 cmdSetU.grid(column=1, row=1, sticky='w', padx=10, pady=10)
-cmdClearU = ttk.Button(frameMain, text='set U=0')
-cmdClearU.grid(column=2, row=1, sticky='w', padx=10, pady=10)
 entrU = Entry(frameMain, text='', )
-entrU.grid(column=0, row=1, padx=10, pady=10, sticky='nsew')
+entrU.grid(column=2, row=1, padx=10, pady=10, sticky='nsew')
+
+cmdClearFan = ttk.Button(frameMain, text='set Fan=0')
+cmdClearFan.grid(column=0, row=2, sticky='w', padx=10, pady=10)
 cmdSetFan = ttk.Button(frameMain, text='fan')
 cmdSetFan.grid(column=1, row=2, sticky='w', padx=10, pady=10)
-cmdClearFan = ttk.Button(frameMain, text='set Fan=0')
-cmdClearFan.grid(column=2, row=2, sticky='w', padx=10, pady=10)
 entrFan = Entry(frameMain, text='', )
-entrFan.grid(column=0, row=2, padx=10, pady=10, sticky='nsew')
+entrFan.grid(column=2, row=2, padx=10, pady=10, sticky='nsew')
 
 
 # send pch
 framePsh = LabelFrame(root, text='psh', )
 framePsh.grid(column=1, row=3, sticky='nsew', padx=10, pady=10)
-framePsh.columnconfigure(0, weight=1)
-framePsh.columnconfigure(1, weight=1)
+#framePsh.columnconfigure(0, weight=1)
+#framePsh.columnconfigure(1, weight=1)
+framePsh.columnconfigure(2, weight=1)
 framePsh.rowconfigure(0, weight=1)
 framePsh.rowconfigure(1, weight=1)
+framePsh.rowconfigure(2, weight=1)
+
+cmdPshMainClear = ttk.Button(framePsh, text='psh Main I=0')
+cmdPshMainClear.grid(column=0, row=0, sticky='w', padx=10, pady=10)
 cmdPshMain = ttk.Button(framePsh, text='psh Main I')
 cmdPshMain.grid(column=1, row=0, sticky='w', padx=10, pady=10)
 entrPshMainI = Entry(framePsh, text='', )
-entrPshMainI.grid(column=0, row=0, padx=10, pady=10, sticky='nsew')
+entrPshMainI.grid(column=2, row=0, padx=10, pady=10, sticky='nsew')
+
+cmdPshAxClear = ttk.Button(framePsh, text='psn Ax I=0')
+cmdPshAxClear.grid(column=0, row=1, sticky='w', padx=10, pady=10)
 cmdPshAx = ttk.Button(framePsh, text='psn Ax I')
 cmdPshAx.grid(column=1, row=1, sticky='w', padx=10, pady=10)
 entrPshAxI = Entry(framePsh, text='', )
-entrPshAxI.grid(column=0, row=1, padx=10, pady=10, sticky='nsew')
+entrPshAxI.grid(column=2, row=1, padx=10, pady=10, sticky='nsew')
+
+cmdPsh = ttk.Button(framePsh, text='psh')
+cmdPsh.grid(column=0, row=2, sticky='w', padx=10, pady=10)
 cmdDis = ttk.Button(framePsh, text='Ch Diss')
 cmdDis.grid(column=1, row=2, sticky='w', padx=10, pady=10)
 entrDis = Entry(framePsh, text='', )
-entrDis.grid(column=0, row=2, padx=10, pady=10, sticky='nsew')
+entrDis.grid(column=2, row=2, padx=10, pady=10, sticky='nsew')
 
 
 
@@ -122,6 +137,8 @@ def connect():
         ser.connectPort(comboSerial.get(), int(115200))
         if str(ser.currentPort) != '0':
             print('Connect ' + str(ser.currentPort))
+            textLog.insert('end', 'Connect ' + str(ser.currentPort))
+            textLog.yview(END)
             time.sleep(1)
             fConnect = True
             cmdConnectSerial['text'] = "ConnecteD"
@@ -145,6 +162,8 @@ def send():
     #
     if fConnect:
         strcmd = str(entrCmd.get()) + '\r\n'
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
         print(strcmd, end='')
         ser.write(strcmd)
 
@@ -158,6 +177,8 @@ def setI():
         strcmd = 'mainCurrent ' + str(entrI.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdSetI['command'] = setI
 
@@ -168,6 +189,8 @@ def clearI():
         strcmd = 'mainCurrent 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdClearI['command'] = clearI
 
@@ -179,6 +202,8 @@ def setU():
         strcmd = 'mainVoltage ' + str(entrU.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdSetU['command'] = setU
 
@@ -190,6 +215,8 @@ def clearU():
         strcmd = 'mainVoltage 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdClearU['command'] = clearU
 
@@ -201,6 +228,8 @@ def setFan():
         strcmd = 'fan ' + str(entrFan.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdSetFan['command'] = setFan
 
@@ -211,6 +240,8 @@ def clearFan():
         strcmd = 'fan 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdClearFan['command'] = clearFan
 
@@ -222,8 +253,23 @@ def setPshMain():
         strcmd = 'psh 0 ' + str(entrPshMainI.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdPshMain['command'] = setPshMain
+
+
+def setPshMainClear():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'psh 0 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
+
+cmdPshMainClear['command'] = setPshMainClear
 
 
 # psh Ax
@@ -234,9 +280,22 @@ def setPshAx():
         strcmd = 'psh 3 ' + str(entrPshAxI.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdPshAx['command'] = setPshAx
 
+def setPshAxClear():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'psh 3 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
+
+cmdPshAxClear['command'] = setPshAxClear
 
 # diss ch
 def setDis():
@@ -246,8 +305,26 @@ def setDis():
         strcmd = 'dissipationTest ' + str(entrDis.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
 
 cmdDis['command'] = setDis
+
+
+# psh
+def setPsh():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'psh \r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        textLog.insert('end', strcmd)
+        textLog.yview(END)
+
+cmdPsh['command'] = setPsh
+
+
 
 def log():
     global fConnect
@@ -257,12 +334,16 @@ def log():
             cmdLog['text'] = "log OFF"
             cmd = 'log filtered-adcs\r\n'
             ser.write(cmd)
+            textLog.insert('end', strcmd)
+            textLog.yview(END)
             fLog = True
 
         else:
             cmdLog['text'] = "log ON"
             cmd = 'log\r\n'
             ser.write(cmd)
+            textLog.insert('end', strcmd)
+            textLog.yview(END)
             fLog = False
 
 cmdLog['command'] = log
@@ -277,12 +358,16 @@ def modeMain():
             cmdMain['text'] = "Disable"
             cmd = 'mode main-coil\r\n'
             ser.write(cmd)
+            textLog.insert('end', strcmd)
+            textLog.yview(END)
             fMain = True
 
         else:
             cmdMain['text'] = "on Main"
             cmd = 'disable\r\n'
             ser.write(cmd)
+            textLog.insert('end', strcmd)
+            textLog.yview(END)
             fMain = False
 
 cmdMain['command'] = modeMain
