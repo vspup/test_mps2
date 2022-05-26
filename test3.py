@@ -9,7 +9,7 @@ dT = 50
 
 ctime = time.localtime()
 
-nameLogFile = "log_" + str(ctime.tm_year) + '_' + str(ctime.tm_mon) + '_' + str(ctime.tm_mday) + '_' + str(ctime.tm_hour) \
+nameLogFile = "./log/log_" + str(ctime.tm_year) + '_' + str(ctime.tm_mon) + '_' + str(ctime.tm_mday) + '_' + str(ctime.tm_hour) \
             + '_' + str(ctime.tm_min) + '_' +  str(ctime.tm_sec) + ".txt"
 print(nameLogFile)
 
@@ -128,7 +128,12 @@ cmdDis.grid(column=1, row=2, sticky='w', padx=10, pady=10)
 entrDis = Entry(framePsh, text='', )
 entrDis.grid(column=2, row=2, padx=10, pady=10, sticky='nsew')
 
-
+def loging(st):
+    seconds = time.time()
+    ree = str(round(seconds, 3)) + ' ' + st
+    textLog.insert('end', ree)
+    textLog.yview(END)
+    fileLog.write(ree)
 
 
 def connect():
@@ -137,8 +142,7 @@ def connect():
         ser.connectPort(comboSerial.get(), int(115200))
         if str(ser.currentPort) != '0':
             print('Connect ' + str(ser.currentPort))
-            textLog.insert('end', 'Connect ' + str(ser.currentPort))
-            textLog.yview(END)
+            loging('Connect ' + str(ser.currentPort) + '\n')
             time.sleep(1)
             fConnect = True
             cmdConnectSerial['text'] = "ConnecteD"
@@ -162,8 +166,7 @@ def send():
     #
     if fConnect:
         strcmd = str(entrCmd.get()) + '\r\n'
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
         print(strcmd, end='')
         ser.write(strcmd)
 
@@ -177,8 +180,7 @@ def setI():
         strcmd = 'mainCurrent ' + str(entrI.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdSetI['command'] = setI
 
@@ -189,8 +191,7 @@ def clearI():
         strcmd = 'mainCurrent 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdClearI['command'] = clearI
 
@@ -202,8 +203,7 @@ def setU():
         strcmd = 'mainVoltage ' + str(entrU.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdSetU['command'] = setU
 
@@ -215,8 +215,7 @@ def clearU():
         strcmd = 'mainVoltage 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdClearU['command'] = clearU
 
@@ -228,8 +227,7 @@ def setFan():
         strcmd = 'fan ' + str(entrFan.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdSetFan['command'] = setFan
 
@@ -240,8 +238,7 @@ def clearFan():
         strcmd = 'fan 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdClearFan['command'] = clearFan
 
@@ -253,8 +250,7 @@ def setPshMain():
         strcmd = 'psh 0 ' + str(entrPshMainI.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdPshMain['command'] = setPshMain
 
@@ -266,8 +262,7 @@ def setPshMainClear():
         strcmd = 'psh 0 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdPshMainClear['command'] = setPshMainClear
 
@@ -280,8 +275,7 @@ def setPshAx():
         strcmd = 'psh 3 ' + str(entrPshAxI.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdPshAx['command'] = setPshAx
 
@@ -292,8 +286,7 @@ def setPshAxClear():
         strcmd = 'psh 3 0\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdPshAxClear['command'] = setPshAxClear
 
@@ -305,8 +298,7 @@ def setDis():
         strcmd = 'dissipationTest ' + str(entrDis.get()) + '\r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdDis['command'] = setDis
 
@@ -319,8 +311,7 @@ def setPsh():
         strcmd = 'psh \r\n'
         print(strcmd, end='')
         ser.write(strcmd)
-        textLog.insert('end', strcmd)
-        textLog.yview(END)
+        loging(strcmd)
 
 cmdPsh['command'] = setPsh
 
@@ -334,16 +325,14 @@ def log():
             cmdLog['text'] = "log OFF"
             cmd = 'log filtered-adcs\r\n'
             ser.write(cmd)
-            textLog.insert('end', strcmd)
-            textLog.yview(END)
+            loging(cmd)
             fLog = True
 
         else:
             cmdLog['text'] = "log ON"
             cmd = 'log\r\n'
             ser.write(cmd)
-            textLog.insert('end', strcmd)
-            textLog.yview(END)
+            loging(cmd)
             fLog = False
 
 cmdLog['command'] = log
@@ -358,16 +347,14 @@ def modeMain():
             cmdMain['text'] = "Disable"
             cmd = 'mode main-coil\r\n'
             ser.write(cmd)
-            textLog.insert('end', strcmd)
-            textLog.yview(END)
+            loging(cmd)
             fMain = True
 
         else:
             cmdMain['text'] = "on Main"
             cmd = 'disable\r\n'
             ser.write(cmd)
-            textLog.insert('end', strcmd)
-            textLog.yview(END)
+            loging(cmd)
             fMain = False
 
 cmdMain['command'] = modeMain
@@ -377,14 +364,7 @@ def update():
     if fConnect:
         re = ser.readLN()
         if re != '':
-            #ct = time.localtime()
-            seconds = time.time()
-            #ree = str(ct.tm_hour) + '_' + str(ct.tm_min) + '_' + str(ct.tm_sec) + ' ' + re
-            ree = str(round(seconds, 3)) + ' ' + re
-
-            textLog.insert('end', ree)
-            textLog.yview(END)
-            fileLog.write(ree)
+            loging(re)
 
     root.after(dT, update)
 
