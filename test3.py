@@ -51,7 +51,6 @@ cmdConnectSerial = Button(frameSerial, text="Connect", bg="light grey")
 cmdConnectSerial.grid(column=1, row=0, padx=10, pady=10, sticky='nsew')
 
 
-
 # send command
 frameCommand = LabelFrame(root, text='send CMD', )
 frameCommand.grid(column=0, row=2, sticky='nsew', padx=10, pady=10, columnspan=2)
@@ -130,9 +129,10 @@ entrDis.grid(column=2, row=2, padx=10, pady=10, sticky='nsew')
 
 def loging(st):
     seconds = time.time()
-    ree = str(round(seconds, 3)) + ' ' + st
-    textLog.insert('end', ree)
+    #ree = str(round(seconds, 3)) + ' ' + st
+    textLog.insert('end', st)
     textLog.yview(END)
+    ree = str(round(seconds, 3)) + ' ' + st
     fileLog.write(ree)
 
 
