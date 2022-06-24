@@ -85,6 +85,10 @@ cmdSetI = ttk.Button(frameMain, text='set I')
 cmdSetI.grid(column=1, row=0, sticky='w', padx=10, pady=10)
 entrI = Entry(frameMain, text='', )
 entrI.grid(column=2, row=0, padx=10, pady=10, sticky='nsew')
+cmdUpI = ttk.Button(frameMain, text='+')
+cmdUpI.grid(column=3, row=0, sticky='w', padx=10, pady=10)
+cmdDownI = ttk.Button(frameMain, text='-')
+cmdDownI.grid(column=4, row=0, sticky='w', padx=10, pady=10)
 
 cmdClearU = ttk.Button(frameMain, text='set U=0')
 cmdClearU.grid(column=0, row=1, sticky='w', padx=10, pady=10)
@@ -92,6 +96,11 @@ cmdSetU = ttk.Button(frameMain, text='set V')
 cmdSetU.grid(column=1, row=1, sticky='w', padx=10, pady=10)
 entrU = Entry(frameMain, text='', )
 entrU.grid(column=2, row=1, padx=10, pady=10, sticky='nsew')
+cmdUpU = ttk.Button(frameMain, text='+')
+cmdUpU.grid(column=3, row=1, sticky='w', padx=10, pady=10)
+cmdDownU = ttk.Button(frameMain, text='-')
+cmdDownU.grid(column=4, row=1, sticky='w', padx=10, pady=10)
+
 
 cmdClearFan = ttk.Button(frameMain, text='set Fan=0')
 cmdClearFan.grid(column=0, row=2, sticky='w', padx=10, pady=10)
@@ -99,6 +108,10 @@ cmdSetFan = ttk.Button(frameMain, text='fan')
 cmdSetFan.grid(column=1, row=2, sticky='w', padx=10, pady=10)
 entrFan = Entry(frameMain, text='', )
 entrFan.grid(column=2, row=2, padx=10, pady=10, sticky='nsew')
+cmdUpFan = ttk.Button(frameMain, text='+')
+cmdUpFan.grid(column=3, row=2, sticky='w', padx=10, pady=10)
+cmdDownFan = ttk.Button(frameMain, text='-')
+cmdDownFan.grid(column=4, row=2, sticky='w', padx=10, pady=10)
 
 
 # send pch
@@ -124,13 +137,23 @@ cmdPshAx = ttk.Button(framePsh, text='psn Ax I')
 cmdPshAx.grid(column=1, row=1, sticky='w', padx=10, pady=10)
 entrPshAxI = Entry(framePsh, text='', )
 entrPshAxI.grid(column=2, row=1, padx=10, pady=10, sticky='nsew')
-
 cmdPsh = ttk.Button(framePsh, text='psh')
 cmdPsh.grid(column=0, row=2, sticky='w', padx=10, pady=10)
-cmdDis = ttk.Button(framePsh, text='Ch Diss')
-cmdDis.grid(column=1, row=2, sticky='w', padx=10, pady=10)
-entrDis = Entry(framePsh, text='', )
-entrDis.grid(column=2, row=2, padx=10, pady=10, sticky='nsew')
+
+
+# diss
+frameDiss = LabelFrame(framePsh, text='dissipation', )
+frameDiss.grid(column=1, row=2, sticky='nsew', padx=10, pady=10, columnspan=3)
+
+cmdDissPrep = ttk.Button(frameDiss, text='Prep Diss')
+cmdDissPrep.grid(column=0, row=0, sticky='w', padx=10, pady=10)
+cmdDis0 = ttk.Button(frameDiss, text='Ch Diss 0')
+cmdDis0.grid(column=1, row=0, sticky='w', padx=10, pady=10)
+cmdDis1 = ttk.Button(frameDiss, text='Ch Diss 1')
+cmdDis1.grid(column=2, row=0, sticky='w', padx=10, pady=10)
+
+entrDis = Entry(frameDiss, text='', )
+entrDis.grid(column=3, row=0, padx=10, pady=10, sticky='nsew')
 
 def loging(st):
     seconds = time.time()
@@ -234,8 +257,49 @@ def clearI():
         print(strcmd, end='')
         ser.write(strcmd)
         loging(strcmd)
+        entrI.delete(0, END)
+        entrI.insert(0, '0')
 
 cmdClearI['command'] = clearI
+
+
+def upI():
+    global fConnect
+    #
+    if fConnect:
+        val = entrI.get()
+
+        newValR = (float(val) + float(0.1))
+        newVal = "{:.2f}".format(newValR)
+        strcmd = 'mainCurrent ' + newVal + '\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        loging(strcmd)
+        entrI.delete(0, END)
+        entrI.insert(0, newVal)
+
+
+cmdUpI['command'] = upI
+
+
+def downI():
+    global fConnect
+    #
+    if fConnect:
+        val = entrI.get()
+
+        if float(val) >= 0.1:
+            newValR = (float(val) - float(0.1))
+            newVal = "{:.2f}".format(newValR)
+            strcmd = 'mainCurrent ' + newVal + '\r\n'
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+            entrI.delete(0, END)
+            entrI.insert(0, newVal)
+
+
+cmdDownI['command'] = downI
 
 # set U
 def setU():
@@ -258,8 +322,48 @@ def clearU():
         print(strcmd, end='')
         ser.write(strcmd)
         loging(strcmd)
+        entrU.delete(0, END)
+        entrU.insert(0, '0')
 
 cmdClearU['command'] = clearU
+
+def upU():
+    global fConnect
+    #
+    if fConnect:
+        val = entrU.get()
+        print(float(0.05))
+        print(int(0.05))
+        if float(val) < 10:
+            newValR = (float(val) + float(0.01))
+            newVal = "{:.2f}".format(newValR)
+            strcmd = 'mainVoltage ' + newVal + '\r\n'
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+            entrU.delete(0, END)
+            entrU.insert(0, newVal)
+
+
+cmdUpU['command'] = upU
+
+def downU():
+    global fConnect
+    #
+    if fConnect:
+        val = entrU.get()
+
+        if float(val) >= 0.01:
+            newValR = (float(val) - float(0.01))
+            newVal = "{:.2f}".format(newValR)
+            strcmd = 'mainVoltage ' + newVal + '\r\n'
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+            entrU.delete(0, END)
+            entrU.insert(0, newVal)
+
+cmdDownU['command'] = downU
 
 # fan
 def setFan():
@@ -281,8 +385,49 @@ def clearFan():
         print(strcmd, end='')
         ser.write(strcmd)
         loging(strcmd)
+        entrFan.delete(0, END)
+        entrFan.insert(0, '0')
 
 cmdClearFan['command'] = clearFan
+
+
+def upFan():
+    global fConnect
+    #
+    if fConnect:
+        val = entrFan.get()
+        print(float(0.05))
+        print(int(0.05))
+        if float(val) < 0.9:
+            newFanR = (float(val) + float(0.05))
+            newFan = "{:.2f}".format(newFanR)
+            strcmd = 'fan ' + newFan + '\r\n'
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+            entrFan.delete(0, END)
+            entrFan.insert(0, newFan)
+
+cmdUpFan['command'] = upFan
+
+def downFan():
+    global fConnect
+    #
+    if fConnect:
+        val = entrFan.get()
+
+        if float(val) > 0.1:
+            newFanR = (float(val)-float(0.05))
+            newFan = "{:.2f}".format(newFanR)
+            strcmd = 'fan ' + newFan + '\r\n'
+
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+            entrFan.delete(0, END)
+            entrFan.insert(0, newFan)
+
+cmdDownFan['command'] = downFan
 
 # psh main
 def setPshMain():
@@ -305,6 +450,8 @@ def setPshMainClear():
         print(strcmd, end='')
         ser.write(strcmd)
         loging(strcmd)
+        entrPshMainI.delete(0, END)
+        entrPshMainI.insert(0, '0')
 
 cmdPshMainClear['command'] = setPshMainClear
 
@@ -329,20 +476,10 @@ def setPshAxClear():
         print(strcmd, end='')
         ser.write(strcmd)
         loging(strcmd)
+        entrPshAxI.delete(0, END)
+        entrPshAxI.insert(0, '0')
 
 cmdPshAxClear['command'] = setPshAxClear
-
-# diss ch
-def setDis():
-    global fConnect
-    #
-    if fConnect:
-        strcmd = 'dissipationTest ' + str(entrDis.get()) + '\r\n'
-        print(strcmd, end='')
-        ser.write(strcmd)
-        loging(strcmd)
-
-cmdDis['command'] = setDis
 
 
 # psh
@@ -356,6 +493,61 @@ def setPsh():
         loging(strcmd)
 
 cmdPsh['command'] = setPsh
+
+# diss ch
+
+def setPrep():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'mainVoltage 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        loging(strcmd)
+        entrU.delete(0, END)
+        entrU.insert(0, '0')
+        sleep(2)
+
+        strcmd = 'mainCurrent 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        loging(strcmd)
+        entrI.delete(0, END)
+        entrI.insert(0, '0')
+        sleep(2)
+
+        strcmd = 'fan 0.6\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        loging(strcmd)
+        entrFan.delete(0, END)
+        entrFan.insert(0, '0.6')
+
+cmdDissPrep['command'] = setPrep
+
+def setDis1():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'dissipationTest 1\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        loging(strcmd)
+
+cmdDis1['command'] = setDis1
+
+def setDis0():
+    global fConnect
+    #
+    if fConnect:
+        strcmd = 'dissipationTest 0\r\n'
+        print(strcmd, end='')
+        ser.write(strcmd)
+        loging(strcmd)
+
+cmdDis0['command'] = setDis0
+
+
 
 
 
