@@ -1,0 +1,310 @@
+fan 0.25
+mode
+Current operating mode is: disabled (0)
+mode mainmode main
+unkonw mode: mainmode
+mode main
+unkonw mode: main
+mode main-coil
+Switching to new mode: main-coil
+oc_transition_to_main_coil: main coil mode requested, starting ADC offset calibarion
+pa_calibrate_offsets: ch 0: offset = -1141
+pa_calibrate_offsets: ch 1: offset = 234
+pa_calibrate_offsets: ch 2: offset = -135
+pa_calibrate_offsets: ch 3: offset = 309
+pa_calibrate_offsets: ch 4: offset = -400
+pa_calibrate_offsets: ch 5: offset = -1495
+pa_calibrate_offsets: ch 6: offset = -83
+pa_calibrate_offsets: ch 7: offset = -1225
+pa_calibrate_offsets: ch 8: offset = 923408
+pa_calibrate_offsets: ch 9: offset = 0
+pa_calibrate_offsets: ch 10: offset = -27377
+pa_calibrate_offsets: ch 11: offset = 94
+oc_transition_to_main_coil: ADC offset calibration completed, configuring modules
+pm_process_state_requests: Module 5 igetting I2C config
+initializing driver
+registering I2C IRQ
+starting self-test
+starting I2C controller
+gelatini RT-FW starting...
+BCM I2C config done
+status word: x5011
+BCM supervisor x50 mfr_model:D44TL1A0  serial no:0B3S4DC1GA7IID0H
+status word: x5011
+BCM supervisor x51 mfr_model:D44TL1A0  serial no:0B3S4DC1GA7IJF0I
+Setting PWM Freq: 400000
+pwm_init(): core version: 1.0.0
+pwm_init(): pwm_clk_frq = 400 MHz -> top = 500
+AD7768 current revision id: 0x06
+AD7768 voltage revision id: 0x06
+reading IN SW1 of ch 0, x60  (stat 0)
+reading IN SW1 of ch 1, x60  (stat 0)
+reading IN SW1 of ch 2, x60  (stat 0)
+reading IN SW1 of ch 3, x60  (stat 0)
+reading IN SW1 of ch 4, x60  (stat 0)
+reading IN SW1 of ch 5, x60  (stat 0)
+reading IN SW1 of ch 6, x60  (stat 0)
+reading IN SW1 of ch 7, x60  (stat 0)
+comlin_init: looking up config
+comlin_init: finished
+starting power supply
+All BCMs present
+Configuring BCM 0
+BCM 0 disable fault reg: 0x4000
+BCM 0: Status Word: x10_01
+BCM 0 serial no.:AP0039PUA683772
+Configuring BCM 1
+BCM 1 disable fault reg: 0x4000
+BCM 1: Status Word: x50_11
+BCM 1 serial no.:AP0080PUA683772
+Configuring BCM 2
+BCM 2 disable fault reg: 0x4000
+BCM 2: Status Word: x50_11
+BCM 2 serial no.:AP0025PUA683772
+Configuring BCM 3
+BCM 3 disable fault reg: 0x4000
+BCM 3: Status Word: x50_11
+BCM 3 serial no.:AP0048PUA683772
+Configuring BCM 4
+BCM 4 disable fault reg: 0x4000
+BCM 4: Status Word: x50_11
+BCM 4 serial no.:AP0049PUA683772
+Configuring BCM 5
+BCM 5 disable fault reg: 0x4000
+BCM 5: Status Word: x50_11
+BCM 5 serial no.:AP0079PUA683772
+Configuring BCM 6
+BCM 6 disable fault reg: 0x4000
+BCM 6: Status Word: x10_01
+BCM 6 serial no.:AP0051PUA683772
+Configuring BCM 7
+BCM 7 disable fault reg: 0x4000
+BCM 7: Status Word: x10_01
+BCM 7 serial no.:AP0026PUA683772
+BCM 0: Vin = 238.8V
+BCM 1: Vin = 237.2V
+BCM 2: Vin = 237.2V
+BCM 3: Vin = 239.5V
+BCM 4: Vin = 238.0V
+BCM 5: Vin = 237.2V
+BCM 6: Vin = 239.5V
+BCM 7: Vin = 237.2V
+Configuring BCMs for serial operation (vin = 238.1V)
+Power supply is ready
+mode
+Current operating mode is: disabled (0)
+log filtered-adcs
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
++0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
+lo+0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
+g  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  +0.0000A  |  0.0000A  |  +0.0000V    +0.0000V    +0.0000V    +0.0000V
+
+logs stopped
+log modules
+mod 0: 0.09V  0.05V  0.10V |  34   33   38 |  0 0 0 0 1 1
+mod 1: 0.11V  0.01V  0.08V |  33   34   36 |  0 0 0 0 1 1
+mod 2: 0.05V  0.03V  0.08V |  33   33   40 |  0 0 0 0 1 1
+mod 3: 0.20V  0.04V  0.09V |  33   33   40 |  0 0 0 0 1 1
+mod 4: 0.20V  0.04V  0.09V |  33   33   40 |  0 0 0 0 1 1
+mod 5: 0.17V  0.03V  0.10V |  34   33   42 |  0 0 0 0 1 1
+mod 6: 0.15V  0.04V  0.08V |  34   33   41 |  0 0 0 0 1 1
+mod 7: 0.21V  0.04V  0.10V |  34   33   40 |  0 0 0 0 1 1
+mod 0: 0.07V  0.06V  0.11V |  34   33   40 |  0 0 0 0 1 1
+mod 1: 0.11V  0.01V  0.08V |  33   34   36 |  0 0 0 0 1 1
+mod 2: 0.05V  0.03V  0.08V |  33   33   40 |  0 0 0 0 1 1
+mod 3: 0.19V  0.04V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 4: 0.19V  0.04V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 5: 0.15V  0.04V  0.09V |  34   33   40 |  0 0 0 0 1 1
+mod 6: 0.16V  0.04V  0.08V |  34   34   43 |  0 0 0 0 1 1
+mod 7: 0.20V  0.04V  0.10V |  34   34   40 |  0 0 0 0 1 1
+mod 0: 0.08V  0.06V  0.11V |  34   34   38 |  0 0 0 0 1 1
+mod 1: 0.10V  0.01V  0.06V |  33   33   37 |  0 0 0 0 1 1
+mod 2: 0.06V  0.03V  0.08V |  33   33   40 |  0 0 0 0 1 1
+mod 3: 0.19V  0.04V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 4: 0.19V  0.04V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 5: 0.15V  0.05V  0.09V |  33   33   41 |  0 0 0 0 1 1
+mod 6: 0.16V  0.04V  0.08V |  34   34   43 |  0 0 0 0 1 1
+mod 7: 0.20V  0.04V  0.10V |  34   34   40 |  0 0 0 0 1 1
+mod 0: 0.08V  0.05V  0.10V |  34   34   38 |  0 0 0 0 1 1
+mod 1: 0.10V  0.01V  0.06V |  33   33   37 |  0 0 0 0 1 1
+mod 2: 0.06V  0.03V  0.08V |  33   33   40 |  0 0 0 0 1 1
+mod 3: 0.20V  0.05V  0.08V |  33   33   39 |  0 0 0 0 1 1
+mod 4: 0.20V  0.05V  0.08V |  33   33   39 |  0 0 0 0 1 1
+mod 5: 0.16V  0.03V  0.10V |  33   33   42 |  0 0 0 0 1 1
+mod 6: 0.15V  0.03V  0.08V |  34   34   42 |  0 0 0 0 1 1
+mod 7: 0.20V  0.05V  0.10V |  34   33   40 |  0 0 0 0 1 1
+mod 0: 0.07V  0.05V  0.10V |  34   33   38 |  0 0 0 0 1 1
+mod 1: 0.10V  0.01V  0.06V |  33   33   34 |  0 0 0 0 1 1
+mod 2: 0.05V  0.03V  0.08V |  33   33   39 |  0 0 0 0 1 1
+mod 3: 0.19V  0.03V  0.10V |  33   33   39 |  0 0 0 0 1 1
+mod 4: 0.19V  0.03V  0.10V |  33   33   39 |  0 0 0 0 1 1
+mod 5: 0.17V  0.03V  0.10V |  33   33   40 |  0 0 0 0 1 1
+mod 6: 0.15V  0.03V  0.08V |  34   34   42 |  0 0 0 0 1 1
+mod 7: 0.21V  0.03V  0.10V |  34   33   40 |  0 0 0 0 1 1
+mod 0: 0.07V  0.06V  0.10V |  33   34   38 |  0 0 0 0 1 1
+mod 1: 0.10V  0.01V  0.06V |  33   33   34 |  0 0 0 0 1 1
+mod 2: 0.05V  0.03V  0.08V |  33   33   39 |  0 0 0 0 1 1
+mod 3: 0.19V  0.04V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 4: 0.19V  0.04V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 5: 0.16V  0.04V  0.10V |  33   33   40 |  0 0 0 0 1 1
+mod 6: 0.16V  0.04V  0.07V |  34   34   42 |  0 0 0 0 1 1
+mod 7: 0.20V  0.05V  0.10V |  34   33   40 |  0 0 0 0 1 1
+mod 0: 0.06V  0.05V  0.12V |  34   33   39 |  0 0 0 0 1 1
+mod 1: 0.11V  0.02V  0.05V |  33   33   37 |  0 0 0 0 1 1
+mod 2: 0.06V  0.02V  0.08V |  33   33   40 |  0 0 0 0 1 1
+mod 3: 0.19V  0.04V  0.10V |  33   33   39 |  0 0 0 0 1 1
+mod 4: 0.19V  0.04V  0.10V |  33   33   39 |  0 0 0 0 1 1
+mod 5: 0.16V  0.04V  0.10V |  33   33   42 |  0 0 0 0 1 1
+mod 6: 0.16V  0.04V  0.07V |  34   34   42 |  0 0 0 0 1 1
+mod 7: 0.21V  0.04V  0.11V |  34   34   38 |  0 0 0 0 1 1
+mod 0: 0.09V  0.06V  0.11V |  33   33   40 |  0 0 0 0 1 1
+mod 1: 0.11V  0.02V  0.05V |  33   33   37 |  0 0 0 0 1 1
+mod 2: 0.06V  0.02V  0.08V |  33   33   40 |  0 0 0 0 1 1
+mod 3: 0.18V  0.04V  0.09V |  33   33   40 |  0 0 0 0 1 1
+mod 4: 0.18V  0.04V  0.09V |  33   33   40 |  0 0 0 0 1 1
+mod 5: 0.17V  0.04V  0.10V |  33   33   41 |  0 0 0 0 1 1
+mod 6: 0.14V  0.03V  0.08V |  34   34   43 |  0 0 0 0 1 1
+mod 7: 0.20V  0.04V  0.11V |  34   34   39 |  0 0 0 0 1 1
+mod 0: 0.07V  0.06V  0.10V |  33   34   40 |  0 0 0 0 1 1
+mod 1: 0.11V  0.02V  0.06V |  34   33   38 |  0 0 0 0 1 1
+mod 2: 0.05V  0.02V  0.08V |  33   33   41 |  0 0 0 0 1 1
+mod 3: 0.20V  0.04V  0.10V |  33   33   39 |  0 0 0 0 1 1
+mod 4: 0.20V  0.04V  0.10V |  33   33   39 |  0 0 0 0 1 1
+mod 5: 0.17V  0.04V  0.08V |  33   33   42 |  0 0 0 0 1 1
+mod 6: 0.14V  0.03V  0.08V |  34   34   43 |  0 0 0 0 1 1
+mod 7: 0.22V  0.05V  0.11V |  34   34   39 |  0 0 0 0 1 1
+lmod 0: 0.07V  0.04V  0.11V |  33   34   37 |  0 0 0 0 1 1
+mod 1: 0.11V  0.02V  0.06V |  34   33   38 |  0 0 0 0 1 1
+mod 2: 0.05V  0.02V  0.08V |  33   33   41 |  0 0 0 0 1 1
+mod 3: 0.18V  0.05V  0.10V |  33   33   41 |  0 0 0 0 1 1
+mod 4: 0.18V  0.05V  0.10V |  33   33   41 |  0 0 0 0 1 1
+mod 5: 0.15V  0.04V  0.09V |  33   33   41 |  0 0 0 0 1 1
+mod 6: 0.15V  0.02V  0.08V |  34   34   42 |  0 0 0 0 1 1
+mod 7: 0.21V  0.06V  0.11V |  34   33   40 |  0 0 0 0 1 1
+o mod 0: 0.07V  0.05V  0.11V |  34   33   38 |  0 0 0 0 1 1
+mod 1: 0.10V  0.02V  0.07V |  33   34   35 |  0 0 0 0 1 1
+mod 2: 0.06V  0.03V  0.08V |  33   33   39 |  0 0 0 0 1 1
+mod 3: 0.19V  0.05V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 4: 0.19V  0.05V  0.10V |  33   33   38 |  0 0 0 0 1 1
+mod 5: 0.16V  0.04V  0.09V |  33   33   41 |  0 0 0 0 1 1
+mod 6: 0.15V  0.02V  0.08V |  34   34   42 |  0 0 0 0 1 1
+mod 7: 0.20V  0.04V  0.10V |  34   34   39 |  0 0 0 0 1 1
+g
+logs stopped
+mode main-coil
+Switching to new mode: main-coil
+oc_transition_to_main_coil: main coil mode requested, starting ADC offset calibarion
+pa_calibrate_offsets: ch 0: offset = -1049
+pa_calibrate_offsets: ch 1: offset = 253
+pa_calibrate_offsets: ch 2: offset = -82
+pa_calibrate_offsets: ch 3: offset = 399
+pa_calibrate_offsets: ch 4: offset = -384
+pa_calibrate_offsets: ch 5: offset = -1427
+pa_calibrate_offsets: ch 6: offset = -20
+pa_calibrate_offsets: ch 7: offset = -1210
+pa_calibrate_offsets: ch 8: offset = 764
+pa_calibrate_offsets: ch 9: offset = 0
+pa_calibrate_offsets: ch 10: offset = -30562
+pa_calibrate_offsets: ch 11: offset = 91
+oc_transition_to_main_coil: ADC offset calibration completed, configuring modules
+pm_process_state_requests: Module 3 is configured
+pm_process_state_requests: Module 4 is configured
+pm_process_state_requests: Module 5 is configured
+pm_process_state_requests: Module 6 is configured
+pm_process_state_requests: Module 7 is configured
+pm_process_state_requests: Module 0 is configured
+pm_process_state_requests: Module 1 is configured
+pm_process_state_requests: Module 2 is configured
+oc_transition_to_main_coil: Communication with modules finished
+oc_transition_to_main_coil: Module configuration completed, configuring PGAs
+reading IN SW1 of ch 0, x60  (stat 0)
+reading IN SW1 of ch 1, x60  (stat 0)
+reading IN SW1 of ch 2, x60  (stat 0)
+reading IN SW1 of ch 3, x60  (stat 0)
+reading IN SW1 of ch 4, x60  (stat 0)
+reading IN SW1 of ch 5, x60  (stat 0)
+reading IN SW1 of ch 6, x60  (stat 0)
+reading IN SW1 of ch 7, x60  (stat 0)
+getting I2C config
+initializing driver
+registering I2C IRQ
+starting self-test
+starting I2C controller
+gelatini RT-FW starting...
+BCM I2C config done
+status word: x5011
+BCM supervisor x50 mfr_model:D44TL1A0  serial no:0B3S4DC1GA7IID0H
+status word: x5011
+BCM supervisor x51 mfr_model:D44TL1A0  serial no:0B3S4DC1GA7IJF0I
+Setting PWM Freq: 400000
+pwm_init(): core version: 1.0.0
+pwm_init(): pwm_clk_frq = 400 MHz -> top = 500
+AD7768 current revision id: 0x06
+AD7768 voltage revision id: 0x06
+reading IN SW1 of ch 0, x60  (stat 0)
+reading IN SW1 of ch 1, x60  (stat 0)
+reading IN SW1 of ch 2, x60  (stat 0)
+reading IN SW1 of ch 3, x60  (stat 0)
+reading IN SW1 of ch 4, x60  (stat 0)
+reading IN SW1 of ch 5, x60  (stat 0)
+reading IN SW1 of ch 6, x60  (stat 0)
+reading IN SW1 of ch 7, x60  (stat 0)
+comlin_init: looking up config
+comlin_init: finished
+starting power supply
+All BCMs present
+Configuring BCM 0
+BCM 0 disable fault reg: 0x4000
+BCM 0: Status Word: x10_01
+BCM 0 serial no.:AP0039PUA683772
+Configuring BCM 1
+BCM 1 disable fault reg: 0x4000
+BCM 1: Status Word: x50_11
+BCM 1 serial no.:AP0080PUA683772
+Configuring BCM 2
+BCM 2 disable fault reg: 0x4000
+BCM 2: Status Word: x50_11
+BCM 2 serial no.:AP0025PUA683772
+Configuring BCM 3
+BCM 3 disable fault reg: 0x4000
+BCM 3: Status Word: x50_11
+BCM 3 serial no.:AP0048PUA683772
+Configuring BCM 4
+BCM 4 disable fault reg: 0x4000
+BCM 4: Status Word: x50_11
+BCM 4 serial no.:AP0049PUA683772
+Configuring BCM 5
+BCM 5 disable fault reg: 0x4000
+BCM 5: Status Word: x50_11
+BCM 5 serial no.:AP0079PUA683772
+Configuring BCM 6
+BCM 6 disable fault reg: 0x4000
+BCM 6: Status Word: x10_01
+BCM 6 serial no.:AP0051PUA683772
+Configuring BCM 7
+BCM 7 disable fault reg: 0x4000
+BCM 7: Status Word: x50_11
+BCM 7 serial no.:AP0026PUA683772
+BCM 0: Vin = 135.6V
+BCM 1: Vin = 135.6V
+BCM 2: Vin = 135.6V
+BCM 3: Vin = 136.3V
+BCM 4: Vin = 135.6V
+BCM 5: Vin = 134.8V
+BCM 6: Vin = 136.3V
+BCM 7: Vin = 134.8V
+Configuring BCMs for parallel operation (vin = 135.6V)
+Power supply is ready
+mode
+Current operating mode is: disabled (0)

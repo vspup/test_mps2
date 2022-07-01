@@ -1,0 +1,21 @@
+1656630026.316 mainCurrent 0
+1656630026.39 [Km[2G[Ka[3G[Ki[4G[Kn[5G[KC[6G[Ku[7G[Kr[8G[Kr[9G[Ke[10G[Kn[11G[Kt[12G[K [13G[K0[14G
+1656630026.449 new setpoint: 0.000000
+1656630051.482 disable
+1656630051.547 [Kd[2G[Ki[3G[Ks[4G[Ka[5G[Kb[6G[Kl[7G[Ke[8G
+1656630052.075 POWER MODULE 7 SENT ALARM FLAG!
+1656630052.137 POWER MODULE 0 SENT ALARM FLAG!
+1656630052.2 POWER MODULE 1 SENT ALARM FLAG!
+1656630052.262 POWER MODULE 2 SENT ALARM FLAG!
+1656630052.323 POWER MODULE 3 SENT ALARM FLAG!
+1656630052.388 POWER MODULE 4 SENT ALARM FLAG!
+1656630052.45 POWER MODULE 5 SENT ALARM FLAG!
+1656630052.514 POWER MODULE 6 SENT ALARM FLAG!
+1656630052.576 pm_process_state_requests: Module 7 is configured
+1656630052.639 pm_process_state_requests: Module 0 is configured
+1656630052.701 pm_process_state_requests: Module 1 is configured
+1656630052.762 pm_process_state_requests: Module 2 is configured
+1656630052.824 pm_process_state_requests: Module 3 is configured
+1656630052.888 pm_process_state_requests: Module 4 is configured
+1656630052.951 pm_process_state_requests: Module 5 is configured
+1656630053.014 pm_process_state_requests: Module 6 is configured
