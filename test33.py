@@ -25,7 +25,7 @@ root.grid_columnconfigure(1, weight=1, uniform="fred")
 
 # Log
 frameLog = LabelFrame(root, text='log')
-frameLog.grid(column=0, row=0, sticky='nsew', padx=10, pady=10, columnspan=2)
+frameLog.grid(column=0, row=0, sticky='nsew', padx=10, pady=10, columnspan=3)
 
 textLog = Text(frameLog)
 textLog.grid(column=0, row=0, sticky='nsew', padx=10, pady=10)
@@ -36,7 +36,7 @@ frameLog.grid_columnconfigure(0, weight=1)
 
 # serial
 frameSerial = LabelFrame(root, text='serial', )
-frameSerial.grid(column=0, row=4, sticky='nsew', padx=10, pady=10)
+frameSerial.grid(column=0, row=3, sticky='nsew', padx=10, pady=10)
 frameSerial.columnconfigure(0, weight=1)
 frameSerial.rowconfigure(0, weight=1)
 # serial
@@ -47,18 +47,18 @@ cmdConnectSerial = Button(frameSerial, text="Connect", bg="light grey")
 cmdConnectSerial.grid(column=1, row=0, padx=10, pady=10, sticky='nsew')
 
 # log filles
-frameLog = LabelFrame(root, text='serial', )
-frameLog.grid(column=1, row=4, sticky='nsew', padx=10, pady=10)
-frameLog.columnconfigure(0, weight=1)
-frameLog.rowconfigure(0, weight=1)
-cmdFLog = ttk.Button(frameLog, text='start write')
+frameLogF = LabelFrame(root, text='file', )
+frameLogF.grid(column=1, row=3, sticky='nsew', padx=10, pady=10)
+frameLogF.columnconfigure(0, weight=1)
+frameLogF.rowconfigure(0, weight=1)
+cmdFLog = ttk.Button(frameLogF, text='start write')
 cmdFLog.grid(column=0, row=0, sticky='w', padx=10, pady=10)
-entrPL = Entry(frameLog, text='', )
+entrPL = Entry(frameLogF, text='', )
 entrPL.grid(column=1, row=0, padx=10, pady=10, sticky='nsew')
 
 # send command
 frameCommand = LabelFrame(root, text='send CMD', )
-frameCommand.grid(column=0, row=2, sticky='nsew', padx=10, pady=10, columnspan=2)
+frameCommand.grid(column=0, row=1, sticky='nsew', padx=10, pady=10, columnspan=3)
 frameCommand.columnconfigure(0, weight=1)
 frameCommand.rowconfigure(0, weight=1)
 cmdSend = ttk.Button(frameCommand, text='send')
@@ -74,7 +74,7 @@ cmdMain.grid(column=4, row=0, sticky='n', padx=10, pady=10)
 
 # send main
 frameMain = LabelFrame(root, text='main', )
-frameMain.grid(column=0, row=3, sticky='nsew', padx=10, pady=10)
+frameMain.grid(column=0, row=2, sticky='nsew', padx=10, pady=10)
 frameMain.columnconfigure(2, weight=1)
 frameMain.rowconfigure(0, weight=1)
 
@@ -116,7 +116,7 @@ cmdDownFan.grid(column=4, row=2, sticky='w', padx=10, pady=10)
 
 # send pch
 framePsh = LabelFrame(root, text='psh', )
-framePsh.grid(column=1, row=3, sticky='nsew', padx=10, pady=10)
+framePsh.grid(column=1, row=2, sticky='nsew', padx=10, pady=10)
 #framePsh.columnconfigure(0, weight=1)
 #framePsh.columnconfigure(1, weight=1)
 framePsh.columnconfigure(2, weight=1)
@@ -154,6 +154,28 @@ cmdDis1.grid(column=2, row=0, sticky='w', padx=10, pady=10)
 
 entrDis = Entry(frameDiss, text='', )
 entrDis.grid(column=3, row=0, padx=10, pady=10, sticky='nsew')
+
+
+# p modules
+frameMod = LabelFrame(root, text='pwm-test', )
+frameMod.grid(column=2, row=2, sticky='nsew', padx=10, pady=10)
+
+cmdModeMod = ttk.Button(frameMod, text='on pwm-test')
+cmdModeMod.grid(column=0, row=0, sticky='w', padx=10, pady=10)
+
+cmdLogMod = ttk.Button(frameMod, text='on log modules')
+cmdLogMod.grid(column=1, row=0, sticky='w', padx=10, pady=10)
+
+cmdModCh = ttk.Button(frameMod, text='set ch')
+cmdModCh.grid(column=0, row=1, sticky='w', padx=10, pady=10)
+entrModCh = Entry(frameMod, text='', )
+entrModCh.grid(column=1, row=1, padx=10, pady=10, sticky='nsew')
+
+cmdModDuty = ttk.Button(frameMod, text='set duty')
+cmdModDuty.grid(column=0, row=2, sticky='w', padx=10, pady=10)
+entrModDuty = Entry(frameMod, text='', )
+entrModDuty.grid(column=1, row=2, padx=10, pady=10, sticky='nsew')
+
 
 def loging(st):
     seconds = time.time()
@@ -592,6 +614,94 @@ def modeMain():
             fMain = False
 
 cmdMain['command'] = modeMain
+
+## pwm-test
+fMod = False
+def modeMod():
+    global fConnect
+    global fMod
+    if fConnect:
+        if not fMod:
+            cmdModeMod['text'] = "Disable"
+            cmd = 'mode pwm-test\r\n'
+            ser.write(cmd)
+            loging(cmd)
+            fMod = True
+
+        else:
+            cmdModeMod['text'] = "on pwm-test"
+            cmd = 'disable\r\n'
+            ser.write(cmd)
+            loging(cmd)
+            fMod = False
+
+cmdModeMod['command'] = modeMod
+
+fModLog = False
+def logMod():
+    global fConnect
+    global fModLog
+    if fConnect:
+        if not fModLog:
+            cmdLogMod['text'] = "log OFF"
+            cmd = 'log modules\r\n'
+            ser.write(cmd)
+            loging(cmd)
+            fModLog = True
+
+        else:
+            cmdLogMod['text'] = "log ON"
+            cmd = 'log\r\n'
+            ser.write(cmd)
+            loging(cmd)
+            fModLog = False
+
+cmdLogMod['command'] = logMod
+
+# select ch
+fCh = False
+def setCh():
+    global fConnect, fCh
+    #
+    if fConnect:
+        if not fCh:
+            cmdModCh['text'] = "dis Ch"
+            strcmd = 'module ' + str(entrModCh.get()) + ' enable \r\n'
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+            fCh = True
+        else:
+            cmdModCh['text'] = "en Ch"
+            strcmd = 'module ' + str(entrModCh.get()) + ' disable \r\n'
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+            fCh = False
+
+
+cmdModCh['command'] = setCh
+
+# duty
+
+
+def setDuty():
+    global fConnect, fCh
+
+    if fConnect:
+        if fCh:
+
+            #strcmd = 'duty ' + str(entrModCh.get()) + ' 0 ' + str(entrModDuty.get()) + ' \r\n'
+            strcmd = 'duty 0 0 0.02 \r\n'
+            print(strcmd, end='')
+            ser.write(strcmd)
+            loging(strcmd)
+
+
+
+cmdModDuty['command'] = setDuty
+
+###
 
 def update():
     global fConnect
