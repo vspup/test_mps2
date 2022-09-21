@@ -691,8 +691,8 @@ def setDuty():
     if fConnect:
         if fCh:
 
-            #strcmd = 'duty ' + str(entrModCh.get()) + ' 0 ' + str(entrModDuty.get()) + ' \r\n'
-            strcmd = 'duty 0 0 0.02 \r\n'
+            strcmd = 'duty ' + str(entrModCh.get()) + ' 0 ' + str(entrModDuty.get()) + ' \r\n'
+            #strcmd = 'duty 0 0 0.02 \r\n'
             print(strcmd, end='')
             ser.write(strcmd)
             loging(strcmd)
