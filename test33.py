@@ -608,7 +608,7 @@ def modeMain():
 
         else:
             cmdMain['text'] = "on Main"
-            cmd = 'disable\r\n'
+            cmd = 'mode disabled\r\n'
             ser.write(cmd)
             loging(cmd)
             fMain = False
