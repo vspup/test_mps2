@@ -133,5 +133,16 @@ class Uart:
         self.currentPort.write(command.encode('ascii'))
 
     def readLN(self):
-        re = self.currentPort.readline().decode('ascii')
+        # need re = self.currentPort.readline().decode('ascii')
+        # UnicodeDecodeError: 'ascii' codec can't decode byte 0xfe in position 5: ordinal not in range(128)
+        rend = self.currentPort.readline()
+        print(rend)
+        ree = b''
+        for ch in rend:
+            #print(ch)
+            if int(ch) <= 128:
+                num_bytes = int(ch).to_bytes(1, byteorder='big')
+                ree = ree + num_bytes
+        #re = self.currentPort.readline().decode('ascii')
+        re = ree
         return re
