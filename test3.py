@@ -33,8 +33,7 @@ frameLog.grid(column=0, row=0, sticky='nsew', padx=10, pady=10, columnspan=2)
 
 textLog = Text(frameLog)
 textLog.grid(column=0, row=0, sticky='nsew', padx=10, pady=10)
-
-frameLog.grid_rowconfigure(0, weight=1)
+ frameLog.grid_rowconfigure(0, weight=1)
 frameLog.grid_columnconfigure(0, weight=1)
 
 
